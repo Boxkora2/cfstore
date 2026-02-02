@@ -1,23 +1,35 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Kora Coffee Theme Palette */
+  --kora-cream: #FAF7F2;
+  --kora-brown: #6F4E37;
+  --kora-dark: #3E2723;
+  --kora-beige: #D2B48C;
+  --kora-sage: #8FBC8F;
+  --kora-latte: #FFF8E1;
+  
+  --background: var(--kora-cream);
+  --foreground: var(--kora-dark);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  
+  --color-kora-cream: var(--kora-cream);
+  --color-kora-brown: var(--kora-brown);
+  --color-kora-dark: var(--kora-dark);
+  --color-kora-beige: var(--kora-beige);
+  --color-kora-sage: var(--kora-sage);
+  --color-kora-latte: var(--kora-latte);
+  
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+
+
 
 body {
   background: var(--background);
