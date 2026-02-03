@@ -8,6 +8,7 @@ export interface MenuItem {
   category: Category;
   image: string; // URL or Emoji for now
   popular?: boolean;
+  discount?: number; // Discount percentage (10-90)
 }
 
 export const menuItems: MenuItem[] = [
@@ -19,6 +20,7 @@ export const menuItems: MenuItem[] = [
     category: 'Specialty',
     image: '/images/latte.png',
     popular: true,
+    discount: 20,
   },
   {
     id: '2',
@@ -44,6 +46,7 @@ export const menuItems: MenuItem[] = [
     category: 'Non-Coffee',
     image: '/images/matcha.png',
     popular: true,
+    discount: 50,
   },
   {
     id: '5',

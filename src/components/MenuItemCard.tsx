@@ -7,8 +7,18 @@ interface MenuItemCardProps {
 }
 
 export const MenuItemCard: React.FC<MenuItemCardProps> = ({ item }) => {
+  const hasDiscount = typeof item.discount === 'number' && item.discount >= 10 && item.discount <= 90;
+  const finalPrice = hasDiscount ? item.price * (1 - item.discount! / 100) : item.price;
+
   return (
     <div className="group relative bg-white p-6 rounded-3xl shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-kora-latte overflow-hidden">
+      {/* Discount Badge */}
+      {hasDiscount && (
+        <span className="absolute top-0 left-0 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-br-xl z-20">
+          {item.discount}% OFF
+        </span>
+      )}
+
       {/* Cute popular tag */}
       {item.popular && (
         <span className="absolute top-0 right-0 bg-kora-beige text-white text-xs font-bold px-3 py-1 rounded-bl-xl z-10">
@@ -33,14 +43,15 @@ export const MenuItemCard: React.FC<MenuItemCardProps> = ({ item }) => {
           {item.description}
         </p>
         
-        <div className="mt-auto flex items-center gap-3">
-          <span className="text-lg font-bold text-kora-brown">{formatPrice(item.price)}</span>
-          <button 
-            className="w-8 h-8 rounded-full bg-kora-sage text-white flex items-center justify-center hover:bg-kora-brown transition-colors shadow-md active:scale-95"
-            title="Add to order"
-          >
-            +
-          </button>
+        <div className="mt-auto flex items-center justify-center gap-2">
+          {hasDiscount ? (
+            <>
+              <span className="text-lg font-bold text-red-500">{formatPrice(finalPrice)}</span>
+              <span className="text-sm text-gray-400 line-through decoration-gray-400">{formatPrice(item.price)}</span>
+            </>
+          ) : (
+            <span className="text-lg font-bold text-kora-brown">{formatPrice(item.price)}</span>
+          )}
         </div>
       </div>
       
