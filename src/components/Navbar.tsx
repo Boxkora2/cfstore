@@ -16,11 +16,8 @@ export const Navbar = () => {
         </div>
 
         <div className="flex items-center gap-3">
-          <button className="bg-kora-brown text-white px-5 py-2 rounded-full font-bold hover:bg-kora-dark transition-all transform hover:scale-105 shadow-md">
-            Order Now
-          </button>
           <a
-            href="https://www.korachoco.cv/en"
+            href="https://www.korachoco.cv"
             target="_blank"
             rel="noopener noreferrer"
             className="bg-kora-sage text-white px-5 py-2 rounded-full font-bold hover:bg-green-700 transition-all transform hover:scale-105 shadow-md"
