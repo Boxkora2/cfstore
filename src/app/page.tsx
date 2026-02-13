@@ -1,6 +1,5 @@
 'use client';
 import { useState, useEffect } from 'react';
-import { Navbar } from '@/components/Navbar';
 import { MenuItemCard } from '@/components/MenuItemCard';
 import { menuItems, Category } from '@/data/menu';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -61,7 +60,6 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-kora-cream/30 border-t-4 border-kora-brown">
       <EventPopup />
-      <Navbar />
       <EventBoard />
       
       {/* Hero Section */}
