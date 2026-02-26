@@ -12,7 +12,7 @@ const EVENT_IMAGES = [
 
 export const EventPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [currentImage, setCurrentImage] = useState(EVENT_IMAGES[0]);
+  const currentImage = EVENT_IMAGES[0];
 
   useEffect(() => {
     // Show popup after a short delay for better UX
@@ -75,7 +75,7 @@ export const EventPopup = () => {
             
             <div className="text-center mt-4 mb-2">
               <h3 className="text-2xl font-bold text-kora-brown mb-1">Happening Now!</h3>
-              <p className="text-gray-600 text-sm">Don't miss out on our special events.</p>
+              <p className="text-gray-600 text-sm">Don&apos;t miss out on our special events.</p>
               <button 
                 onClick={handleClose}
                 className="mt-4 bg-kora-sage text-white px-6 py-2 rounded-full font-bold hover:bg-kora-brown transition-all transform hover:scale-105"

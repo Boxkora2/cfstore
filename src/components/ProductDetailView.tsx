@@ -119,7 +119,7 @@ export default function ProductDetailView({ variants }: ProductDetailViewProps) 
             <div>
                <h3 className="text-2xl font-serif font-bold text-kora-dark mb-3">The Story</h3>
                <p className="text-stone-600 leading-relaxed italic border-l-4 border-kora-beige pl-4 py-1">
-                 "{selectedVariant.details.story}"
+                 &quot;{selectedVariant.details.story}&quot;
                </p>
             </div>
           </motion.div>

@@ -14,11 +14,6 @@ export default function Home() {
   const categories: (Category | 'All')[] = ['All', 'Specialty', 'Espresso', 'Non-Coffee', 'Pastries'];
   const ITEMS_PER_PAGE = 6;
 
-  // Reset to page 1 when category changes
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [activeCategory]);
-
   const filteredItems = activeCategory === 'All' 
     ? menuItems 
     : menuItems.filter(item => item.category === activeCategory);
@@ -35,6 +30,7 @@ export default function Home() {
     const oldIndex = categories.indexOf(activeCategory);
     setDirection(newIndex > oldIndex ? 1 : -1);
     setActiveCategory(cat);
+    setCurrentPage(1);
   };
 
   const handlePageChange = (newPage: number) => {
