@@ -1,14 +1,61 @@
+import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { products } from '@/data/products';
 import ProductDetailView from '@/components/ProductDetailView';
 
+const BASE_URL = "https://korachoco.coffee";
+
 // Generate static params for all possible slugs
 export function generateStaticParams() {
   const slugs = Array.from(new Set(products.map((p) => p.slug)));
-  return slugs.map((slug) => ({
-    slug: slug,
-  }));
+  return slugs.map((slug) => ({ slug }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const variants = products.filter((p) => p.slug === slug);
+  if (!variants.length) return {};
+
+  const primary = variants[0];
+  const title = `${primary.name} — ${primary.tagline}`;
+  const description =
+    primary.description.length > 155
+      ? primary.description.slice(0, 152) + "…"
+      : primary.description;
+  const canonicalUrl = `${BASE_URL}/products/${slug}`;
+
+  return {
+    title,
+    description,
+    keywords: [
+      primary.name,
+      "coffee beans",
+      ...primary.details.flavorNotes,
+      ...primary.categories,
+      "buy coffee online",
+      "KoraChoco Coffee",
+    ],
+    alternates: { canonical: canonicalUrl },
+    openGraph: {
+      type: "website",
+      url: canonicalUrl,
+      title: `${title} | KoraChoco Coffee`,
+      description,
+      images: [
+        {
+          url: primary.image.startsWith("/") ? primary.image : `/images/${slug}.png`,
+          width: 800,
+          height: 600,
+          alt: `${primary.name} — KoraChoco Coffee`,
+        },
+      ],
+    },
+  };
 }
 
 export default async function ProductPage({
